@@ -44,18 +44,19 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ===== HEADER: 全屏沉浸式粒子动画 ===== */
+                /* ===== HEADER: 沉浸式粒子动画 ===== */
         header {
             position: relative;
-            background: #020617;
+            background: #0f172a;
             color: #fff;
-            height: 100vh;
-            min-height: 600px;
-            max-height: 900px;
+            height: auto;
+            min-height: 320px;
+            max-height: 480px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            padding: 60px 20px;
         }
 
         .header-canvas {
@@ -73,7 +74,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(ellipse at center, transparent 0%, rgba(2,6,23,0.4) 100%);
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(15,23,42,0.5) 100%);
             z-index: 2;
             pointer-events: none;
         }
@@ -87,14 +88,14 @@
         }
 
         .avatar-ring {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background: linear-gradient(135deg, #0ea5e9, #8b5cf6, #ec4899);
-            padding: 4px;
-            margin: 0 auto 32px;
+            padding: 3px;
+            margin: 0 auto 24px;
             animation: rotate 10s linear infinite;
-            box-shadow: 0 0 60px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 0 40px rgba(14, 165, 233, 0.3);
         }
 
         @keyframes rotate {
@@ -110,15 +111,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 2.5rem;
             animation: rotate 10s linear infinite reverse;
         }
 
         header h1 {
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             font-weight: 800;
             letter-spacing: -0.03em;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             line-height: 1.1;
         }
 
@@ -131,43 +132,43 @@
 
         .title-sub {
             display: block;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 600;
             color: #94a3b8;
-            margin-top: 8px;
+            margin-top: 6px;
             letter-spacing: 0.05em;
         }
 
         .title-underline {
-            width: 80px;
+            width: 60px;
             height: 3px;
             background: linear-gradient(90deg, #0ea5e9, #8b5cf6);
-            margin: 0 auto 24px;
+            margin: 0 auto 20px;
             border-radius: 2px;
         }
 
         header p {
-            font-size: 1.25rem;
-            color: #64748b;
+            font-size: 1.1rem;
+            color: #94a3b8;
             font-weight: 400;
             letter-spacing: 0.02em;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .header-tags {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
-            margin-top: 32px;
+            margin-top: 24px;
             flex-wrap: wrap;
         }
 
         .header-tag {
-            padding: 8px 18px;
+            padding: 6px 14px;
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 100px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #94a3b8;
             font-weight: 500;
             transition: var(--transition);
@@ -180,68 +181,37 @@
             transform: translateY(-2px);
         }
 
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            opacity: 0.5;
-            z-index: 5;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .scroll-hint:hover {
-            opacity: 0.8;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 50px;
-            background: linear-gradient(to bottom, #fff, transparent);
-            animation: scrollPulse 2s infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
-            50% { opacity: 1; transform: scaleY(1); }
-        }
-
-        .scroll-text {
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: #64748b;
-        }
-
         @media (max-width: 768px) {
             header {
-                min-height: 500px;
-                max-height: 700px;
+                min-height: 260px;
+                max-height: 360px;
+                padding: 40px 16px;
             }
             header h1 {
-                font-size: 2.8rem;
+                font-size: 2.4rem;
             }
             .title-sub {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
             .avatar-ring {
-                width: 90px;
-                height: 90px;
+                width: 80px;
+                height: 80px;
             }
             .avatar-inner {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             .header-tags {
-                gap: 8px;
+                gap: 6px;
             }
             .header-tag {
-                padding: 6px 14px;
-                font-size: 0.8rem;
+                padding: 5px 12px;
+                font-size: 0.75rem;
+            }
+            .title-underline {
+                margin-bottom: 16px;
+            }
+            header p {
+                font-size: 0.95rem;
             }
         }
 
@@ -1008,7 +978,7 @@
 </head>
 <body>
 
-    <header>
+       <header>
         <canvas id="headerCanvas" class="header-canvas"></canvas>
         <div class="header-overlay"></div>
         <div class="header-content-center">
@@ -1021,10 +991,6 @@
             </h1>
             <div class="title-underline"></div>
             <p id="page-subtitle">专注生物医学和健康政策前沿</p>
-        </div>
-        <div class="scroll-hint" onclick="document.getElementById('main-page').scrollIntoView({behavior: 'smooth'})">
-            <span class="scroll-line"></span>
-            <span class="scroll-text" id="scroll-text">向下探索</span>
         </div>
     </header>
 
@@ -1127,7 +1093,7 @@
                 draw() {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(148, 163, 184, ${this.opacity})`;
+                    ctx.fillStyle = `rgba(180, 190, 210, ${this.opacity})`;
                     ctx.fill();
                 }
             }
@@ -1151,7 +1117,7 @@
                             ctx.beginPath();
                             ctx.moveTo(p1.x, p1.y);
                             ctx.lineTo(p2.x, p2.y);
-                            ctx.strokeStyle = `rgba(148, 163, 184, ${0.08 * (1 - dist/150)})`;
+                            ctx.strokeStyle = `rgba(180, 190, 210, ${0.12 * (1 - dist/150)})`;
                             ctx.lineWidth = 0.5;
                             ctx.stroke();
                         }
