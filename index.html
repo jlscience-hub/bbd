@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李娟博士科普作品集 / Dr. Juan Li Science Portfolio</title>
+    <style>
+        :root {
+            --bg-primary: #fafaf9;
+            --bg-secondary: #f5f5f4;
+            --bg-card: #ffffff;
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --text-muted: #a8a29e;
+            --accent: #0c4a6e;
+            --accent-light: #e0f2fe;
+            --accent-hover: #075985;
+            --border: #e7e5e4;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== HEADER: 全屏沉浸式粒子动画 ===== */
+        header {
+            position: relative;
+            background: #020617;
+            color: #fff;
+            height: 100vh;
+            min-height: 600px;
+            max-height: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .header-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(2,6,23,0.4) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .header-content-center {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .avatar-ring {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9, #8b5cf6, #ec4899);
+            padding: 4px;
+            margin: 0 auto 32px;
+            animation: rotate 10s linear infinite;
+            box-shadow: 0 0 60px rgba(14, 165, 233, 0.3);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: rotate 10s linear infinite reverse;
+        }
+
+        header h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .title-gradient {
+            background: linear-gradient(135deg, #fff 0%, #38bdf8 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title-sub {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-top: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .title-underline {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+            margin: 0 auto 24px;
+            border-radius: 2px;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: #64748b;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        .header-tags {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .header-tag {
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 500;
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+        }
+
+        .header-tag:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.5;
+            z-index: 5;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-hint:hover {
+            opacity: 0.8;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, #fff, transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        .scroll-text {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                min-height: 500px;
+                max-height: 700px;
+            }
+            header h1 {
+                font-size: 2.8rem;
+            }
+            .title-sub {
+                font-size: 1.4rem;
+            }
+            .avatar-ring {
+                width: 90px;
+                height: 90px;
+            }
+            .avatar-inner {
+                font-size: 2.2rem;
+            }
+            .header-tags {
+                gap: 8px;
+            }
+            .header-tag {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== LANGUAGE TOGGLE ===== */
+        .lang-toggle {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+        }
+
+        .lang-toggle button {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            color: #fff;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lang-toggle button:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+
+        .lang-icon {
+            font-size: 1.1rem;
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .main-container {
+            max-width: 1280px;
+            margin: 60px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .author-sidebar {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            transition: var(--transition);
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #38bdf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(12, 74, 110, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .author-avatar::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            opacity: 0.6;
+        }
+
+        .author-sidebar h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .author-sidebar p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .more-about-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .more-about-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(12, 74, 110, 0.25);
+        }
+
+        .sidebar-tags {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .sidebar-tags h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sidebar-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 14px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            margin: 0 6px 8px 0;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .sidebar-tag:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+            border-color: #bae6fd;
+            transform: translateY(-1px);
+        }
+
+        .tag-icon {
+            font-size: 0.9rem;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            width: 100%;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-icon {
+            font-size: 1.4rem;
+            opacity: 0.8;
+        }
+
+        /* ===== TAGS CONTAINER ===== */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .category-tag {
+            padding: 8px 18px;
+            background: transparent;
+            color: var(--text-secondary);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            outline: none;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .category-tag:hover {
+            background: var(--bg-secondary);
+            border-color: var(--text-muted);
+            transform: translateY(-1px);
+        }
+
+        .category-tag.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(12, 74, 110, 0.2);
+        }
+
+        .cat-icon {
+            font-size: 1rem;
+        }
+
+        /* ===== ARTICLES GRID ===== */
+        .full-articles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #38bdf8);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #cbd5e1;
+        }
+
+        .article-card:hover::before {
+            opacity: 1;
+        }
+
+        .article-card-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .article-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            background: var(--accent-light);
+            color: var(--accent);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: inherit;
+        }
+
+        .article-tag:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .article-card h4 {
+            margin: 0 0 12px 0;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .article-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .article-card .abstract {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0 0 20px 0;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .read-more {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+        }
+
+        .read-more::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--accent-hover);
+        }
+
+        .read-more:hover::after {
+            transform: translateX(4px);
+        }
+
+        .meta-info {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .meta-icon {
+            font-size: 0.9rem;
+        }
+
+        /* ===== ADDITIONAL WORKS ===== */
+        .additional-works {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px;
+            border: 1px solid var(--border);
+            margin-top: 48px;
+        }
+
+        .additional-works h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .additional-works-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            columns: 2;
+            column-gap: 32px;
+        }
+
+        .additional-works-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            break-inside: avoid;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: var(--transition);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .additional-works-list li::before {
+            content: '📄';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        .additional-works-list li:hover {
+            padding-left: 24px;
+        }
+
+        .additional-works-list li:hover::before {
+            opacity: 1;
+        }
+
+        .additional-works-list li:last-child {
+            border-bottom: none;
+        }
+
+        .work-title {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .work-source {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* ===== CATEGORY & ABOUT PAGES ===== */
+        .category-page, .about-full-page {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 24px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            background: var(--accent-light);
+        }
+
+        .back-btn:hover {
+            background: #bae6fd;
+            transform: translateX(-4px);
+        }
+
+        .category-page h2, .about-full-page h2 {
+            margin-bottom: 24px;
+            font-size: 1.75rem;
+        }
+
+        .more-articles-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .more-articles-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            transition: var(--transition);
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .more-articles-list li::before {
+            content: '🔬';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            font-size: 1rem;
+            opacity: 0.4;
+        }
+
+        .more-articles-list li:hover {
+            padding-left: 32px;
+            background: var(--bg-secondary);
+            margin: 0 -16px;
+            padding-left: 32px;
+            padding-right: 16px;
+            border-radius: var(--radius-sm);
+        }
+
+        .more-articles-list li:hover::before {
+            opacity: 0.8;
+        }
+
+        .more-articles-list a {
+            color: var(--text-primary);
+            text-decoration: none;
+            flex: 1;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .more-articles-list a:hover {
+            color: var(--accent);
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-left: 16px;
+            white-space: nowrap;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ===== ABOUT PAGE ===== */
+        .about-header-visual {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-avatar-large {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #38bdf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 4px 16px rgba(12, 74, 110, 0.2);
+            flex-shrink: 0;
+        }
+
+        #full-about-content h3 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #full-about-content p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .about-icon {
+            font-size: 1.1rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 48px 24px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .footer-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 0 auto 20px;
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+
+        .footer-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            opacity: 0.4;
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                margin-top: 40px;
+            }
+            .author-sidebar {
+                position: static;
+                top: auto;
+            }
+            .full-articles-container {
+                grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            }
+            .additional-works-list {
+                columns: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                min-height: 500px;
+                max-height: 700px;
+            }
+            header h1 {
+                font-size: 2.8rem;
+            }
+            .title-sub {
+                font-size: 1.4rem;
+            }
+            .avatar-ring {
+                width: 90px;
+                height: 90px;
+            }
+            .avatar-inner {
+                font-size: 2.2rem;
+            }
+            .header-tags {
+                gap: 8px;
+            }
+            .header-tag {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+            .main-container {
+                padding: 0 16px;
+                margin-top: 30px;
+            }
+            .full-articles-container {
+                grid-template-columns: 1fr;
+            }
+            .article-card .abstract {
+                -webkit-line-clamp: 5;
+            }
+            .lang-toggle {
+                top: 16px;
+                right: 16px;
+            }
+            .lang-toggle button {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+            .category-page, .about-full-page {
+                margin: 20px 16px;
+                padding: 24px;
+            }
+            .about-header-visual {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-avatar-large {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <canvas id="headerCanvas" class="header-canvas"></canvas>
+        <div class="header-overlay"></div>
+        <div class="header-content-center">
+            <div class="avatar-ring">
+                <div class="avatar-inner">👩‍🔬</div>
+            </div>
+            <h1 id="page-title">
+                <span class="title-gradient">李娟博士</span>
+                <span class="title-sub" id="title-sub">科普作品集</span>
+            </h1>
+            <div class="title-underline"></div>
+            <p id="page-subtitle">专注生物医学和健康政策前沿</p>
+            <div class="header-tags">
+                <span class="header-tag">🧬 生命科学</span>
+                <span class="header-tag">💊 生物医药</span>
+                <span class="header-tag">🏥 健康政策</span>
+            </div>
+        </div>
+        <div class="scroll-hint" onclick="document.getElementById('main-page').scrollIntoView({behavior: 'smooth'})">
+            <span class="scroll-line"></span>
+            <span class="scroll-text" id="scroll-text">向下探索</span>
+        </div>
+    </header>
+
+    <div class="lang-toggle">
+        <button id="langBtn" onclick="toggleLanguage()">
+            <span class="lang-icon">🌐</span>
+            <span>English</span>
+        </button>
+    </div>
+
+    <div class="main-container" id="main-page">
+        <aside class="author-sidebar" id="about-content"></aside>
+
+        <main>
+            <div class="section-header">
+                <h2 id="section-featured"><span class="section-icon">✨</span>精选文章</h2>
+            </div>
+            
+            <div class="tags-container" id="tags-container"></div>
+
+            <div class="full-articles-container" id="full-articles-container"></div>
+
+            <div class="additional-works reveal">
+                <h3 id="additional-works-title"><span class="section-icon">📚</span>更多作品</h3>
+                <ul class="additional-works-list" id="additional-works-list"></ul>
+            </div>
+        </main>
+    </div>
+
+    <div class="category-page" id="category-page">
+        <a href="javascript:void(0)" class="back-btn" onclick="showMainPage()">← <span id="back-text">返回主页</span></a>
+        <h2 id="category-title">分类：</h2>
+        <ul class="more-articles-list" id="category-list"></ul>
+        
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <div class="empty-state-icon">🔍</div>
+            <p id="empty-text">该分类下暂无文章</p>
+        </div>
+    </div>
+
+    <div class="about-full-page" id="about-full-page">
+        <a href="javascript:void(0)" class="back-btn" onclick="showMainPage()">← <span id="about-back-text">返回主页</span></a>
+        <div class="about-header-visual">
+            <div class="about-avatar-large">👩‍🔬</div>
+            <div>
+                <h2 id="full-about-title">作者简介</h2>
+                <p style="color: var(--text-muted); margin: 0;" id="about-subtitle">科学传播者 & 研究者</p>
+            </div>
+        </div>
+        <div id="full-about-content"></div>
+    </div>
+
+    <footer>
+        <div class="footer-line"></div>
+        <div class="footer-decoration">
+            <span>🧬</span>
+            <span>🔬</span>
+            <span>🧪</span>
+            <span>🧠</span>
+            <span>💊</span>
+        </div>
+        <p id="footer-text">&copy; 2026 Juan Li 博士 / All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // ===== PARTICLE ANIMATION =====
+        (function() {
+            const canvas = document.getElementById('headerCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animationId;
+            
+            function resize() {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+            
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.speedY = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                        this.reset();
+                    }
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(148, 163, 184, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+            
+            for (let i = 0; i < 80; i++) {
+                particles.push(new Particle());
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                // 连线
+                particles.forEach((p1, i) => {
+                    particles.slice(i + 1).forEach(p2 => {
+                        const dx = p1.x - p2.x;
+                        const dy = p1.y - p2.y;
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        if (dist < 150) {
+                            ctx.beginPath();
+                            ctx.moveTo(p1.x, p1.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = `rgba(148, 163, 184, ${0.08 * (1 - dist/150)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    });
+                });
+                animationId = requestAnimationFrame(animate);
+            }
+            animate();
+            
+            // 页面不可见时暂停动画节省性能
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    cancelAnimationFrame(animationId);
+                } else {
+                    animate();
+                }
+            });
+        })();
+
+        // ===== DATA =====
+        const categoryIcons = {
+            '生命科学': '🧬',
+            'Life Science': '🧬',
+            '生物医药': '💊',
+            'Biomedicine': '💊',
+            '健康政策': '🏥',
+            'Health Policy': '🏥',
+            '医疗技术': '🔬',
+            'Medical Technology': '🔬',
+            '人物采访': '🎙️',
+            'Interviews': '🎙️'
+        };
+
+        const articlesData = [
+            {
+                "zhTitle": "一兴奋就瘫倒的狗改写人类睡眠：发作性睡病与食欲素里程碑发现",
+                "enTitle": "Dogs Collapsing from Excitement Rewrote Human Sleep Science: Milestone Discovery of Orexin & Narcolepsy",
+                "zhAbstract": "文章由斯坦福大学突发猝倒的患病实验犬切入，梳理发作性睡病百年科研突破：犬类遗传研究锁定食欲素（Orexin/Hypocretin）受体突变致病，两条独立科研路线同期发现食欲素肽类物质；人类1型发作性睡病源于自身免疫攻击致下丘脑食欲素神经元大量凋亡。该发现颠覆传统睡眠理论（睡眠非被动休眠，清醒靠食欲素系统主动维持），催生DORA类新型安眠药物，摆脱传统GABA安眠药成瘾弊端，同时食欲素激动剂为发作性睡病靶向新药研发奠基，从罕见犬类遗传病研究落地造福亿万失眠人群。",
+                "enAbstract": "Based on narcoleptic research dogs with emotion-triggered sudden cataplexy raised at Stanford University, this paper summarizes century-long breakthroughs on narcolepsy. Canine genetic research identified mutation on orexin receptor as disease cause, while two independent research teams simultaneously discovered orexin (hypocretin) neuropeptides. Human type 1 narcolepsy is triggered by autoimmune destruction of orexin-producing hypothalamic neurons. This discovery overturned the classic passive sleep theory: wakefulness is actively sustained by the orexin regulatory system rather than a default resting state. The finding leads to the development of novel DORA sleeping pills without the addiction risk of traditional GABA-based sedatives, alongside orexin agonists for targeted narcolepsy treatment, turning rare canine disease research into therapeutic benefits for hundreds of millions of insomniacs worldwide.",
+                "link": "https://www.thepaper.cn/newsDetail_forward_33288316",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2026-06-05",
+                "media": "澎湃新闻"
+            },
+            {
+                "zhTitle": "猎杀14万只山羊拯救象龟：加拉帕戈斯百年物种保育纪实",
+                "enTitle": "Culling 140,000 Feral Goats to Save Giant Tortoises: A Century of Galápagos Conservation",
+                "zhAbstract": "本文以加拉帕戈斯群岛伊莎贝拉项目猎杀14万只入侵野山羊的生态保护行动为切入点，介绍加拉帕戈斯象龟保育全历程：外来山羊、鼠、野猫等入侵物种啃食本土植被、捕食龟卵致象龟种群濒临灭绝；人类通过大规模清剿入侵物种、圈养繁育、野化放归等手段，使多地象龟种群从个位数恢复至数千只；科研人员借助NASA卫星遥感开展灭绝物种复活繁育计划，如弗洛雷纳岛象龟重引入、费尔南迪纳岛灭绝象龟重新发现。文章同时点明气候变化、人类污染、新型病原体仍是现存象龟种群的持续性生存威胁。",
+                "enAbstract": "Starting from Project Isabela's culling of over 140,000 invasive feral goats for giant tortoise conservation on Galápagos Islands, this article outlines the full conservation history of Galápagos giant tortoises. Invasive species including goats, rats and feral cats destroyed endemic vegetation and preyed on tortoise eggs, pushing native tortoises toward extinction. Thanks to invasive animal eradication, captive breeding and reintroduction programs, multiple tortoise populations rebounded from dozens to thousands of individuals. Scientists adopt NASA satellite remote sensing to implement revival breeding of extinct tortoise subspecies, such as Floreana giant tortoise reintroduction and rediscovery of supposedly extinct Fernandina tortoise. However, climate change, human pollution and emerging pathogens remain persistent threats to surviving tortoise colonies.",
+                "link": "https://www.thepaper.cn/newsDetail_forward_33208639",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2026-06-03",
+                "media": "澎湃新闻"
+            },
+            {
+                "zhTitle": "披着量子外衣收割高知：伪灵修骗局背后的认知心理学真相",
+                "enTitle": "Scamming Well-Educated People Under Quantum Buzzwords: Cognitive Psychology Behind Pseudospiritual Cult Scams",
+                "zhAbstract": "文章从社会学与认知心理学解析当下依托量子、能量等科学名词包装的伪灵修骗局收割高收入、高学历人群的深层原因：现代化带来\"世界祛魅\"后大众的精神空虚与确定性渴求催生灵性消费市场；骗子利用双系统思维、巴纳姆效应、可得性启发、确认偏差、从众等人类先天认知误区，结合安慰剂效应曲解人体生理舒适感受为宇宙能量作用；通过阶梯式课程收费、隔绝原有社交、认知失调捆绑实现持续敛财洗脑。文末指出，健全科普、普及批判性思维是抵御灵性伪科学的关键路径。",
+                "enAbstract": "Combining sociological and cognitive psychology theories, this article analyzes why pseudoscientific spiritual cultivation scams disguised with buzzwords like quantum and energy successfully trap high-income and well-educated people. After modern disenchantment of the world, people's spiritual emptiness and pursuit of certainty fuel the booming spiritual consumption market. Scammers exploit inherent cognitive biases including dual-process thinking, Barnum effect, availability heuristic, confirmation bias and conformity, and misattribute physical comfort triggered by placebo effect to cosmic energy. These fraud organizations achieve continuous profit and mental manipulation through tiered tuition fees, isolation from original social circles and cognitive dissonance. The paper concludes that popular science education and critical thinking training are essential to guard against pseudospiritual scams.",
+                "link": "https://www.kepuchina.cn/article/articleinfo?business_type=100&classify=0&ar_id=704095",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2026-06-01",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "全球首例临床落地！华裔科学家Prime Editing引导编辑根治罕见遗传病",
+                "enTitle": "World's First Clinical Cure: Prime Editing Developed by Chinese-American Scientist Curates Rare Genetic Disease",
+                "zhAbstract": "本文聚焦华裔科学家刘如谦首创的引导（Prime Editing）基因编辑技术，记述全球首例借助该技术治愈慢性肉芽肿病（CGD）的临床案例：加拿大青年Ty因NCF1基因双碱基缺失罹患罕见免疫缺陷，2025年采用体外造血干细胞引导编辑修复致病突变，术后免疫功能完全恢复，无需终身服药。文章对比CRISPR（双链剪切）与引导编辑（仅切单链、查找替换式修基因）技术差异，梳理CGD从疾病发现、致病基因定位到基因疗法落地数十年科研历程，同时探讨基因编辑高昂定价、生殖细胞编辑伦理等现实挑战与未来罕见病、慢病应用前景。",
+                "enAbstract": "Centered on Prime Editing pioneered by Chinese-American scientist David R. Liu, this paper documents the world's first curative case of chronic granulomatous disease (CGD) using this gene-editing technology. A Canadian youth Ty suffered from rare immunodeficiency caused by two-base deletion on NCF1 gene; in 2025, his ex-vivo hematopoietic stem cells were precisely repaired via Prime Editing, restoring full immune function and eliminating lifelong medication dependence. Comparing with conventional CRISPR which induces double-strand DNA breakage, Prime Editing performs single-strand nick and \"find-and-replace\" gene correction. The paper reviews decades-long research of CGD from disease identification, pathogenic gene mapping to curative gene therapy, and discusses practical dilemmas including sky-high therapy cost and ethical controversies over germline editing, alongside future application potentials for rare and common inherited illnesses.",
+                "link": "https://www.kepuchina.cn/article/articleinfo?business_type=100&classify=0&ar_id=692738",
+                "hasAbstract": true,
+                "zhTag": "生物医药",
+                "enTag": "Biomedicine",
+                "date": "2026-05-28",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "被誉为小诺贝尔奖：2026盖尔德纳奖揭晓，蛋白质科学斩获重磅奖项",
+                "enTitle": "Known as Mini-Nobel: 2026 Gairdner Awards Honor Pioneering Protein Research",
+                "zhAbstract": "2026年素有\"小诺奖\"之称的加拿大盖尔德纳国际奖揭晓，5位学者分三大方向获奖：Wolfgang Baumeister因开发冷冻电子断层扫描（cryo-ET）获奖，该技术可在原生细胞环境观测三维蛋白结构；Jeffery W. Kelly研发全球首个转甲状腺素蛋白淀粉样变性靶向药Tafamidis，证实蛋白错误折叠可被小分子药物干预；John R. Yates III、Ruedi Aebersold、Matthias Mann三人凭借质谱与定量技术搭建现代蛋白质组学体系。此外文章介绍全球健康奖、加拿大本土青年学者奖项，并谈及蛋白质组正向AI大模型、临床诊断落地演进的行业前景。",
+                "enAbstract": "The 2026 Canada Gairdner International Award, known as the \"Little Nobel Prize\", was announced, honoring five distinguished scientists across three core research fields. Wolfgang Baumeister received the prize for inventing cryo-electron tomography (cryo-ET), which allows three-dimensional molecular visualization inside intact native cells. Jeffery W. Kelly developed tafamidis, the world's first approved drug targeting transthyretin amyloidosis and validated the therapeutic intervention of misfolded proteins via small molecules. John R. Yates III, Ruedi Aebersold and Matthias Mann jointly founded modern proteomics by innovating mass spectrometry and quantitative analytical technologies. The article also introduces the Global Health Award and domestic Canadian young investigator prizes, and forecasts that proteomics is evolving toward AI-based foundation models and clinical diagnostic transformation.",
+                "link": "https://www.sohu.com/a/1003794010_121124372",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2026-05-25",
+                "media": "搜狐"
+            },
+            {
+                "zhTitle": "从部落审判毒药到救命良药：毒扁豆碱催生诺奖级重大发现",
+                "enTitle": "From Tribal Poison Ordeal to Lifesaving Drug: Physostigmine Spawned Nobel-Winning Discovery",
+                "zhAbstract": "本文追溯西非卡拉巴尔豆（毒扁豆）衍生的剧毒生物碱毒扁豆碱近两百年医药发展史。该物质最早被西非部落用于神明毒药审判，19世纪起多国科学家以身试毒探明毒性；后续研究发现其与阿托品存在药理拮抗，先后被用于眼科缩瞳、阿托品中毒急救、青光眼治疗；玛丽·沃克借助其研发衍生物新斯的明，开创重症肌无力临床疗法；奥托·洛伊依托毒扁豆碱探明乙酰胆碱为首个神经递质并斩获诺奖，非裔化学家朱利安冲破种族歧视壁垒率先完成毒扁豆碱人工全合成。如今毒扁豆碱仍是抗胆碱类药物中毒特效药，实现从部落诅咒毒豆到救命良药的蜕变。",
+                "enAbstract": "This article reviews the nearly 200-year medical development of physostigmine, a highly toxic alkaloid extracted from Calabar beans in West Africa. Initially used for toxic ordeal trials in indigenous West African tribes, the toxin's toxic properties were verified via self-experiments by European scientists starting from the 19th century. Subsequent pharmacological research confirmed its antagonistic effect against atropine, enabling its clinical applications including miosis for ophthalmology, antidote for atropine poisoning and glaucoma treatment. Mary Broadfoot Walker developed neostigmine, a derivative of physostigmine, to establish the first therapy for myasthenia gravis. Otto Loewi identified acetylcholine as the first neurotransmitter with physostigmine's assistance and won the Nobel Prize in Physiology or Medicine. Against severe racial discrimination, African-American chemist Percy Julian first accomplished the total chemical synthesis of physostigmine. Up to now, physostigmine remains the preferred antidote for anticholinergic intoxication, transforming from a cursed tribal poison into a vital life-saving medicine.",
+                "link": "https://www.kepuchina.cn/article/articleinfo?business_type=100&classify=0&ar_id=687056",
+                "hasAbstract": true,
+                "zhTag": "生物医药",
+                "enTag": "Biomedicine",
+                "date": "2026-05-20",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "医学史上最具影响力的队列研究之一，回答避孕药到底安不安全？",
+                "enTitle": "One of the Most Influential Cohort Studies in Medical History: Is the Birth Control Pill Safe?",
+                "zhAbstract": "护士健康研究(NHS)是医学史上最具影响力的队列研究之一，1976年启动，12万余名护士参与，持续追踪近50年。研究系统回答了避孕药的长期安全性：使用与卵巢癌、结肠癌风险显著降低相关，使用8年以上可使结肠癌风险降低约40%；与总死亡率无关；当前使用者乳腺癌风险略有升高，但停用5年后消失；不同配方风险差异显著。该研究已发表超3800篇论文，将女性健康知识空白转化为健康常识，但目前面临严重资金危机。",
+                "enAbstract": "The Nurses' Health Study (NHS) is one of the most influential cohort studies in medical history. Launched in 1976 with over 120,000 nurse participants tracked for nearly 50 years, it systematically answered questions about oral contraceptive safety: use is associated with significantly reduced ovarian and colon cancer risks, with 8+ years lowering colon cancer risk by ~40%; no association with overall mortality; slightly elevated breast cancer risk among current users that disappears 5 years after discontinuation; significant risk variation by formulation. The study has published over 3,800 papers, transforming knowledge gaps into health wisdom, but currently faces a severe funding crisis.",
+                "link": "https://news.qq.com/rain/a/20260312A03A1Z00",
+                "hasAbstract": true,
+                "zhTag": "健康政策",
+                "enTag": "Health Policy",
+                "date": "2026-03-12",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "明明是自己的孩子，却被DNA鉴定否认，科学上如何解释？",
+                "enTitle": "Why DNA Tests Sometimes Deny Biological Parentage of One's Own Child? Scientific Explanations",
+                "zhAbstract": "文章通过多个真实案例，讲述了嵌合体如何挑战现代医学和法律对\"一个人、一套DNA\"的传统认知。研究显示，嵌合体可能导致亲子鉴定异常、器官移植免疫问题以及性别或生殖发育异常。随着基因检测技术的发展，这类现象正在被越来越多地发现。文章指出，嵌合体研究不仅拓展了人类对遗传学的理解，也对医学诊断和法律实践提出新的思考。",
+                "enAbstract": "This article examines how human chimerism challenges the conventional assumption that one person carries a single genetic identity. Drawing on real cases, it illustrates how chimerism can complicate parentage testing, organ transplantation compatibility, and reproductive biology. Advances in genetic testing have revealed that such cases may be more common than previously recognized. The study of chimerism therefore deepens our understanding of human genetics while raising new questions for medicine and law.",
+                "link": "https://www.kepuchina.cn/article/articleinfo?business_type=100&classify=0&ar_id=678995#comment",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2026-03-04",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "这支笔是过敏者的\"护身符\"，但在中国并不易得",
+                "enTitle": "This Pen is a 'Talisman' for Allergy Sufferers, Yet Hard to Access in China",
+                "zhAbstract": "本文回顾了过敏性休克的发现及肾上腺素成为急救药物的科学历程，并介绍了EpiPen自动注射装置的诞生与全球普及。如今，这种\"救命笔\"已成为欧美过敏患者的重要急救工具。文章指出，中国患者长期难以获得类似产品，但相关急救药物的审批正在推进，过敏急救体系有望逐步改善。",
+                "enAbstract": "This article reviews the discovery of anaphylaxis and the development of epinephrine as its life-saving treatment, as well as the invention and global spread of the EpiPen auto-injector. In many Western countries, epinephrine auto-injectors are widely used by people at risk of severe allergies. The article also highlights the limited availability of such tools in mainland China, while noting recent regulatory progress that may improve emergency allergy care.",
+                "link": "https://www.kepuchina.cn/article/articleinfo?business_type=100&classify=0&ar_id=676557#comment",
+                "hasAbstract": true,
+                "zhTag": "健康政策",
+                "enTag": "Health Policy",
+                "date": "2026-02-25",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "美国基础科研罕见收缩，全球大批新药将胎死腹中？",
+                "enTitle": "Rare Contraction in U.S. Basic Research Threatens Global Drug Pipeline",
+                "zhAbstract": "2025年美国NIH经费大幅削减引发全球关注。本文通过多项实证研究深度剖析公共资助与新药研发之间的共生关系，揭示基础科研作为创新药\"地基\"的不可替代性。",
+                "enAbstract": "The massive cuts to NIH funding in 2025 have sparked global concern. This article analyzes the symbiotic relationship between public funding and drug R&D, revealing the irreplaceable role of basic research as the foundation for innovation.",
+                "link": "https://news.qq.com/rain/a/20260121A02PNB00",
+                "hasAbstract": true,
+                "zhTag": "健康政策",
+                "enTag": "Health Policy",
+                "date": "2026-01-21",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "癌症与心脏病，为何经常\"死磕\"同一人？",
+                "enTitle": "Why Cancer and Heart Disease Often Strike the Same Individual",
+                "zhAbstract": "心血管疾病与肿瘤常年占据全球死因前两位。本文探讨两者在生活方式、慢性炎症、代谢重塑及遗传因素上的深层联系，介绍新兴学科\"肿瘤心脏病学\"的前沿进展。",
+                "enAbstract": "Cardiovascular disease and cancer are the top two causes of death globally. This article explores their deep connections in lifestyle, chronic inflammation, metabolic remodeling, and genetics, introducing the emerging field of 'Cardio-Oncology'.",
+                "link": "https://www.thepaper.cn/newsDetail_forward_32531350",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2026-01-15",
+                "media": "澎湃新闻"
+            },
+            {
+                "zhTitle": "40岁后必查肺功能和骨密度，为何中国的官方建议与别国不同？",
+                "enTitle": "Lung Function and Bone Density Tests Mandatory After 40 in China: Why the Policy Divergence",
+                "zhAbstract": "中国2025版体检\"新国标\"将肺功能与骨密度列为40岁以上必选项，而欧美国家则不建议对无症状人群进行常规筛查。本文深度解读这一政策差异背后的疾病负担与预防医学逻辑。",
+                "enAbstract": "China's 2025 health examination standards mandate lung function and bone density tests for those over 40. This article explores the logic behind this policy divergence from Western guidelines, focusing on disease burden and preventive medicine.",
+                "link": "https://www.163.com/dy/article/KJ52O4EM05327918.html",
+                "hasAbstract": true,
+                "zhTag": "健康政策",
+                "enTag": "Health Policy",
+                "date": "2025-12-30",
+                "media": "网易新闻"
+            },
+            {
+                "zhTitle": "一起真实案例曝出可怕细节：AI如何两次把人\"逼疯\"",
+                "enTitle": "Chilling Case Study: How AI Triggered Acute Mental Disorders Twice in a Healthcare Worker",
+                "zhAbstract": "本文深入剖析了一起令人震惊的真实案例：一名医护人员在与AI聊天过程中两次陷入急性精神障碍...",
+                "enAbstract": "This article provides an in-depth analysis of a shocking real-life case where a healthcare worker fell into acute mental disorders twice...",
+                "link": "https://news.qq.com/rain/a/20251229A01YC600",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-12-29",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "加拿大批准克隆肉进超市，美国网友破防：我们可能吃很久了",
+                "enTitle": "Canada Approves Cloned Meat for Retail Sale, Sparking Outrage in the US",
+                "zhAbstract": "2025年秋，加拿大正式认可克隆肉为普通食品，允许其在不加特殊标签的情况下进入超市货架...",
+                "enAbstract": "In the fall of 2025, Canada officially recognized cloned meat as a common food, allowing it to enter supermarket shelves without special labeling...",
+                "link": "https://cj.sina.com.cn/articles/view/1618051664/60718250027019gdw?froms=ggmp",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-11-15",
+                "media": "新浪财经"
+            },
+            {
+                "zhTitle": "科学家重新定义肥胖，你一直在用的\"金指标\"要变了",
+                "enTitle": "Scientists Redefine Obesity: The 'Golden Standard' BMI Faces Overhaul",
+                "zhAbstract": "长期被视为衡量肥胖\"金标准\"的BMI（身体质量指数）正面临前所未有的挑战...",
+                "enAbstract": "BMI (Body Mass Index), long considered the 'gold standard' for measuring obesity, is facing unprecedented challenges...",
+                "link": "https://www.kepuchina.cn/article/articleinfo?business_type=100&classify=0&ar_id=579418",
+                "hasAbstract": true,
+                "zhTag": "健康政策",
+                "enTag": "Health Policy",
+                "date": "2025-10-20",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "7岁血癌女孩绝境逢生，这项疗法为何成为\"最后希望\"？",
+                "enTitle": "7-Year-Old Leukemia Patient's Miraculous Recovery: Why CAR-T Therapy is the Last Hope",
+                "zhAbstract": "Emily Whitehead的抗癌奇迹让CAR-T疗法走进了大众视野...",
+                "enAbstract": "Emily Whitehead's miraculous recovery from cancer brought CAR-T therapy into the public eye...",
+                "link": "https://www.kepuchina.cn/article/articleinfo?business_type=100&classify=0&ar_id=648657",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-09-30",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "接种新冠mRNA疫苗后，肿瘤意外消退！Nature研究证实其效果",
+                "enTitle": "Unexpected Tumor Regression After COVID-19 mRNA Vaccination: Nature Study Confirms Efficacy",
+                "zhAbstract": "《自然》杂志发表的一项重磅研究发现，新冠mRNA疫苗在预防病毒之余，竟能作为强大的通用免疫调节剂...",
+                "enAbstract": "A major study published in 'Nature' found that beyond preventing viruses, the COVID-19 mRNA vaccine can act as a powerful universal immunomodulator...",
+                "link": "https://www.163.com/dy/article/KDGTH0SI05327918.html",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-09-15",
+                "media": "网易新闻"
+            },
+            {
+                "zhTitle": "3900万新病例？儿童肥胖正在改写一代中国人的健康轨迹",
+                "enTitle": "39 Million New Cases: Childhood Obesity Reshaping China's Health Landscape",
+                "zhAbstract": "中国正面临严峻的儿童肥胖危机。研究显示，肥胖病例快速上升且呈现\"农村包围城市\"趋势...",
+                "enAbstract": "China is facing a severe childhood obesity crisis. Research shows that obesity cases are rising rapidly...",
+                "link": "https://news.qq.com/rain/a/20250908A03NSY00",
+                "hasAbstract": true,
+                "zhTag": "健康政策",
+                "enTag": "Health Policy",
+                "date": "2025-09-08",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "诺和诺德与亨利医药的跨境收购纠纷：临床不确定性的教训",
+                "enTitle": "Novo Nordisk-KBP Acquisition Dispute: Lessons from Clinical Uncertainty",
+                "zhAbstract": "深度报道剖析制药巨头诺和诺德与中国亨利医药之间高达13亿美元的收购纠纷...",
+                "enAbstract": "This in-depth report analyzes the $1.3 billion acquisition dispute between pharmaceutical giant Novo Nordisk and Chinese biotech company KBP...",
+                "link": "https://www.pharmadj.com/ssr/en/article/1980099002068201474",
+                "hasAbstract": true,
+                "zhTag": "生物医药",
+                "enTag": "Biomedicine",
+                "date": "2025-09-08",
+                "media": "研发客"
+            },
+            {
+                "zhTitle": "给大脑补\"锂\"后，丢失的记忆力奇迹般恢复了",
+                "enTitle": "Memory Miraculously Restored After Lithium Supplementation",
+                "zhAbstract": "哈佛医学院研究揭示锂在阿尔茨海默病中关键作用。患者大脑锂缺乏激活有害分子开关，加速蛋白沉积。补充特殊锂可恢复记忆，为早期防治提供新方向。",
+                "enAbstract": "Research from Harvard Medical School reveals the key role of lithium in Alzheimer's disease. Lithium deficiency in patients' brains activates harmful molecular switches, accelerating protein deposition. Supplementing with special lithium can restore memory, providing a new direction for early prevention and treatment.",
+                "link": "https://news.qq.com/rain/a/20250829A04S5M00",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-08-29",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "继心肝肾后，猪肺也成功移植人体，异种器官移植还要走多远的路？",
+                "enTitle": "Pig Lung Successfully Transplanted into Human: The Future of Xenotransplantation",
+                "zhAbstract": "2025年8月，中国科研团队成功将基因编辑猪肺移植到一名脑死亡受体体内...",
+                "enAbstract": "In August 2025, a Chinese research team successfully transplanted a gene-edited pig lung into a brain-dead recipient...",
+                "link": "https://cloud.kepuchina.cn/newSearch/imgText?id=7370579367073513472",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-08-25",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "跟着视频学了17个小时，它就能独立主刀做手术",
+                "enTitle": "After 17 Hours of Video Learning, It Can Perform Surgery Independently",
+                "zhAbstract": "AI机器人SRT-H通过观看手术视频17小时即可独立完成复杂操作。具备双层大脑，一层理解视觉场景，一层精准执行动作，标志手术机器人从辅助工具迈向自主执行体。",
+                "enAbstract": "The AI robot SRT-H can independently complete complex operations after watching surgical videos for 17 hours. Equipped with a dual-layer brain - one layer understands visual scenes and the other precisely executes movements - it marks the evolution of surgical robots from auxiliary tools to autonomous executors.",
+                "link": "https://news.qq.com/rain/a/20250811A02NSZ00",
+                "hasAbstract": true,
+                "zhTag": "医疗技术",
+                "enTag": "Medical Technology",
+                "date": "2025-08-11",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "90多岁的女儿仍健康，117岁老人捐出自己的长寿\"密码\"",
+                "enTitle": "117-Year-Old Supercentenarian Donates 'Longevity Secrets' to Science",
+                "zhAbstract": "全球最长寿老人Maria Branyas Morera以117岁高龄离世，她留下的生物样本为科学家解锁\"健康衰老\"提供了珍贵线索...",
+                "enAbstract": "Maria Branyas Morera, the world's oldest person, passed away at 117, leaving behind biological samples that provide precious clues...",
+                "link": "https://www.163.com/dy/article/KD1H58DC05327918.html",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-08-10",
+                "media": "网易"
+            },
+            {
+                "zhTitle": "人们宁愿养狗，也不生娃？背后的科学解释找到了",
+                "enTitle": "People Prefer Dogs to Babies? The Scientific Explanation Found",
+                "zhAbstract": "全球生育率下降，宠物狗成为许多家庭情感核心。研究显示狗与人类幼儿情感依恋相似，养狗提供易控、即时反馈的情感满足，形成新生活方式与宠物经济现象。",
+                "enAbstract": "With the global decline in fertility rates, pet dogs have become the emotional core of many families. Studies show that the emotional attachment between dogs and human infants is similar, and dog ownership provides controllable and immediate emotional satisfaction, forming a new lifestyle and pet economy phenomenon.",
+                "link": "https://news.qq.com/rain/a/20250609A03SF600",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-06-09",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "仅靠空腹抽血，不能良好评估代谢健康，中国科学家给出新方法",
+                "enTitle": "Fasting Blood Alone Cannot Assess Metabolic Health, Chinese Scientists Offer New Method",
+                "zhAbstract": "传统体检只关注空腹指标不足以评估代谢能力。双维度健康模型引入稳态适应评分，可动态评估餐后代谢变化，为个性化营养和早期疾病预防提供精准工具。",
+                "enAbstract": "Traditional physical examinations focusing only on fasting indicators are insufficient to assess metabolic capacity. The two-dimensional health model introduces a homeostatic adaptation score that can dynamically evaluate postprandial metabolic changes, providing a precise tool for personalized nutrition and early disease prevention.",
+                "link": "https://news.qq.com/rain/a/20250504A02XX800",
+                "hasAbstract": true,
+                "zhTag": "健康政策",
+                "enTag": "Health Policy",
+                "date": "2025-05-04",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "科学家从自家后院挖到\"宝\"，发了篇Nature",
+                "enTitle": "Scientists Found 'Treasure' in Backyard, Published in Nature",
+                "zhAbstract": "加拿大团队在自家土壤发现新抗生素Lariocidin，可精准打击耐药菌。尽管距离临床仍远，但为全球耐药性危机提供新曙光，提醒自然界仍是创新药物宝库。",
+                "enAbstract": "A Canadian team discovered a new antibiotic Lariocidin in their backyard soil that can precisely target drug-resistant bacteria. Although far from clinical application, it provides new hope for the global antimicrobial resistance crisis and reminds us that nature is still a treasure trove of innovative drugs.",
+                "link": "https://news.qq.com/rain/a/20250408A03BOP00",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-04-08",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "这种新药堪称\"抗癌导弹\"，它是如何改变癌症治疗的？",
+                "enTitle": "This New Drug Is a 'Cancer Missile': How It Changes Cancer Therapy",
+                "zhAbstract": "抗体偶联药物（ADC）实现精准打击肿瘤细胞，最大限度保护正常细胞。通过导航、保险与弹头三位一体结构，ADC瓦解顽固癌细胞并产生旁观者效应，引领癌症治疗新时代。",
+                "enAbstract": "Antibody-drug conjugates (ADCs) achieve precise targeting of tumor cells while maximizing protection of normal cells. Through a three-in-one structure of navigation, insurance and payload, ADCs break down stubborn cancer cells and produce a bystander effect, leading a new era in cancer treatment.",
+                "link": "https://news.qq.com/rain/a/20250401A09N9700",
+                "hasAbstract": true,
+                "zhTag": "生物医药",
+                "enTag": "Biomedicine",
+                "date": "2025-04-01",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "挑战40年权威理论，Science子刊：智慧生命诞生或是一种必然",
+                "enTitle": "Challenging 40-Year Authority Theory: Emergence of Intelligent Life May Be Inevitable",
+                "zhAbstract": "《科学进展》研究提出智慧生命演化可能受环境驱动必然出现。地球系统条件设定环境门槛，一旦成熟，生命顺着进化阶梯发展，为地外生命搜寻提供新视角。",
+                "enAbstract": "Research in Science Advances suggests that the evolution of intelligent life may be inevitably driven by the environment. Earth system conditions set environmental thresholds, and once mature, life develops along the evolutionary ladder, providing a new perspective for the search for extraterrestrial life.",
+                "link": "https://news.qq.com/rain/a/20250317A039IE00",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-03-17",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "鱼儿性别紊乱，秃鹫肾衰竭，这个杀手还要制造多少生态灾难？",
+                "enTitle": "Pharmaceutical Pollution: The Silent Killer Devastating Wildlife Populations",
+                "zhAbstract": "药物作为新兴污染物进入自然环境，成为野生动物隐形杀手...",
+                "enAbstract": "Pharmaceuticals, as emerging pollutants entering the natural environment, have become invisible killers of wildlife...",
+                "link": "https://news.qq.com/rain/a/20250221A03A7U00",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-02-21",
+                "media": "腾讯新闻"
+            },
+            {
+                "zhTitle": "如何拯救食物过敏者的餐桌？",
+                "enTitle": "Revolutionizing the Dining Experience for Food Allergy Sufferers",
+                "zhAbstract": "全球食物过敏发病率上升，传统\"被动回避\"影响生活质量...",
+                "enAbstract": "With the global incidence of food allergies rising, traditional 'passive avoidance' affects quality of life...",
+                "link": "https://iscientists.blog.caixin.com/archives/281745",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2025-01-18",
+                "media": "财新网"
+            },
+            {
+                "zhTitle": "跨越时空的科学对话：现代科学解开160年前的遗传学密码",
+                "enTitle": "160 Years Later: Modern Science Deciphers Mendel's Genetic Code",
+                "zhAbstract": "160年前孟德尔奠定遗传学基础，如今科研团队利用基因组学破解豌豆七性状的分子机制...",
+                "enAbstract": "160 years ago, Mendel laid the foundation of genetics. Today, research teams are using genomics to decipher the molecular mechanisms...",
+                "link": "https://cloud.kepuchina.cn/newSearch/imgText?id=7326654547563003904",
+                "hasAbstract": true,
+                "zhTag": "生命科学",
+                "enTag": "Life Science",
+                "date": "2024-12-05",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "钛合金：医疗领域的\"万能金属\"是如何炼成的？",
+                "enTitle": "Titanium Alloy: The 'Universal Metal' Transforming Modern Medicine",
+                "zhAbstract": "钛合金因生物相容性、高强度与耐腐蚀性被誉为医疗\"万能金属\"...",
+                "enAbstract": "Titanium alloy is hailed as the 'universal metal' of medicine due to its biocompatibility, high strength, and corrosion resistance...",
+                "link": "https://cloud.kepuchina.cn/newSearch/imgText?id=7347674783378661376",
+                "hasAbstract": true,
+                "zhTag": "医疗技术",
+                "enTag": "Medical Technology",
+                "date": "2024-11-20",
+                "media": "科普中国"
+            },
+            {
+                "zhTitle": "预防痴呆应该怎么吃？最新科学研究告诉你",
+                "enTitle": "Dietary Strategies to Prevent Dementia: What the Latest Research Reveals",
+                "zhAbstract": "研究表明约45%的痴呆风险可通过饮食和生活方式改变...",
+                "enAbstract": "Research shows that about 45% of dementia risk can be modified through diet and lifestyle changes...",
+                "link": "https://cloud.kepuchina.cn/newSearch/imgText?id=7354982167336841216",
+                "hasAbstract": true,
+                "zhTag": "健康政策",
+                "enTag": "Health Policy",
+                "date": "2024-10-30",
+                "media": "科普中国"
+            }
+        ];
+
+        const additionalWorksData = [
+            { "zhTitle": "含麝香的产品可能导致青春期提前，我们该怎么选洗化用品？", "enTitle": "Musky Products Linked to Early Puberty: How to Choose Safe Personal Care Items", "source": "《中国科普博览》，2024-10-21", "zhTag": "健康政策", "enTag": "Health Policy", "media": "中国科普博览" },
+            { "zhTitle": "2022年市场多变，下一个投资风口在哪？原来多家知名机构已提前布局慢性肾病市场", "enTitle": "2022 Investment Trends: Chronic Kidney Disease Emerges as a Key Opportunity", "source": "《药时代》，2022-03-23", "zhTag": "生物医药", "enTag": "Biomedicine", "media": "药时代" },
+            { "zhTitle": "信达/礼来PD-1冲BLA受挫，哪些中国创新药有望成功进军美国市场？", "enTitle": "Innovent/Lilly PD-1 Setback: Which Chinese Drugs Can Succeed in the US Market?", "source": "《动脉网》，2022-02-16", "zhTag": "生物医药", "enTag": "Biomedicine", "media": "动脉网" },
+            { "zhTitle": "重组AAV基因载体（rAAV）治疗眼部疾病的四大技术瓶颈与解决方案", "enTitle": "AAV Gene Therapy for Eye Diseases: Breaking Through Key Technical Barriers", "source": "《本草圈》、《动脉网》，2021-11-13", "zhTag": "医疗技术", "enTag": "Medical Technology", "media": "动脉网" },
+            { "zhTitle": "蛋白降解领域赛道持续升温，国内外资本积极布局", "enTitle": "Protein Degradation: A Red-Hot Field Attracting Global Investment", "source": "《动脉网》、《生辉》，2021-11-05", "zhTag": "生物医药", "enTag": "Biomedicine", "media": "动脉网" },
+            { "zhTitle": "本草孵化企业本草瑞生first-in-class创新药ricolinostat IND获CDE受理，推进新适应症CIPN中国开发", "enTitle": "BenCao Biotech's Ricolinostat IND Accepted: Advancing CIPN Treatment in China", "source": "《本草圈》，2021-08-31", "zhTag": "生物医药", "enTag": "Biomedicine", "media": "本草圈" },
+            { "zhTitle": "跨界交叉，颠覆式医疗创新的秘诀？——梳理本草资本投资逻辑和交叉创新投资案例", "enTitle": "Cross-Disciplinary Innovation: The Secret to Disruptive Medical Breakthroughs", "source": "《本草圈》，2021-08-11", "zhTag": "生物医药", "enTag": "Biomedicine", "media": "本草圈" },
+            { "zhTitle": "化学防晒剂会进入血液，夏季如何安全防晒？", "enTitle": "Chemical Sunscreens Enter Bloodstream: How to Protect Skin Safely in Summer", "source": "《健康学人》，2020-05-18", "zhTag": "健康政策", "enTag": "Health Policy", "media": "健康学人" },
+            { "zhTitle": "王辰团队详解：武汉16家方舱医院，在防控新冠中发挥了怎样的作用？", "enTitle": "Wuhan's 16 Fangcang Hospitals: Their Crucial Role in COVID-19 Containment", "source": "《知识分子》，2020-04-22", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知识分子" },
+            { "zhTitle": "历经数个艰苦阶段，武汉为全球防疫提供了哪些宝贵经验？", "enTitle": "Wuhan's COVID-19 Lessons: Valuable Insights for Global Pandemic Response", "source": "《知识分子》，2020-04-12", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知识分子" },
+            { "zhTitle": "出院复阳难题，也许可以试试血清学检测", "enTitle": "Post-Discharge COVID-19 Recurrence: Serological Testing Offers New Hope", "source": "《赛先生》，2020-03-12", "zhTag": "生命科学", "enTag": "Life Science", "media": "赛先生" },
+            { "zhTitle": "世卫：战胜新冠病毒，哪些科研问题亟待解决？", "enTitle": "WHO Identifies Key Research Priorities to Defeat COVID-19", "source": "《健康学人》，2020-03-07", "zhTag": "生命科学", "enTag": "Life Science", "media": "健康学人" },
+            { "zhTitle": "多国撤侨人群中检出新冠病毒感染者，武汉的感染规模预计有多大？", "enTitle": "COVID-19 Cases Found in Evacuees: Estimating Wuhan's Infection Scale", "source": "《赛先生》，2020-02-14", "zhTag": "健康政策", "enTag": "Health Policy", "media": "赛先生" },
+            { "zhTitle": "癌症靶点研究有哪些不靠谱？诺奖得主指出常见问题", "enTitle": "Nobel Laureate Highlights Flaws in Cancer Target Research", "source": "《返朴》，2019-12-02", "zhTag": "生命科学", "enTag": "Life Science", "media": "返朴" },
+            { "zhTitle": "常喝甜饮料或纯果汁需警惕癌症风险升高", "enTitle": "Sugary Drinks and Fruit Juices Linked to Increased Cancer Risk", "source": "《知识分子》，2019-07-24", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知识分子" },
+            { "zhTitle": "胃肠道病早发现：可吞咽设备的未来", "enTitle": "Swallowable Devices: The Future of Early GI Disease Detection", "source": "《中国科普博览》，2019-03-27", "zhTag": "医疗技术", "enTag": "Medical Technology", "media": "中国科普博览" },
+            { "zhTitle": "好消息！健康学人们迎来好机遇，5万人基因外显子组数据全球共享！", "enTitle": "50,000 Exome Sequences Now Globally Available for Health Research", "source": "《健康学人》，2019-03-18", "zhTag": "生命科学", "enTag": "Life Science", "media": "健康学人" },
+            { "zhTitle": "愈发普遍的食物过敏，你中招了吗？", "enTitle": "Rising Food Allergies: Are You at Risk?", "source": "《中国科普博览》，2019-03-07", "zhTag": "生命科学", "enTag": "Life Science", "media": "中国科普博览" },
+            { "zhTitle": "这个研究说：吃坚果有益于糖尿病患者的心脏健康", "enTitle": "Study: Nut Consumption Benefits Heart Health in Diabetics", "source": "《知识分子》，2019-03-01", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知识分子" },
+            { "zhTitle": "重大更新：中英科学家将抗心律失常药物重新分类", "enTitle": "Major Update: Chinese and UK Scientists Reclassify Antiarrhythmic Drugs", "source": "《知识分子》，2018-10-27", "zhTag": "医疗技术", "enTag": "Medical Technology", "media": "知识分子" },
+            { "zhTitle": "为什么患有过敏性鼻炎的人也易发哮喘？", "enTitle": "Why Allergic Rhinitis Patients Are Prone to Asthma", "source": "《健康学人》，2018-09-16", "zhTag": "生命科学", "enTag": "Life Science", "media": "健康学人" },
+            { "zhTitle": "五千人的研究数据告诉你：男女大脑真不同", "enTitle": "5,000-Person Study Confirms Gender Differences in Brain Structure", "source": "《健康学人》，2018-08-17", "zhTag": "生命科学", "enTag": "Life Science", "media": "健康学人" },
+            { "zhTitle": "炎症疾病不可小觑，竟与心血管发病风险有关", "enTitle": "Inflammatory Diseases Linked to Increased Cardiovascular Risk", "source": "《健康学人》，2018-07-24", "zhTag": "健康政策", "enTag": "Health Policy", "media": "健康学人" },
+            { "zhTitle": "想要拥有彭于晏同款肌肉？膳食蛋白要足够", "enTitle": "Building Muscle Like Eddie Peng: The Importance of Dietary Protein", "source": "《健康学人》，2018-07-19", "zhTag": "健康政策", "enTag": "Health Policy", "media": "健康学人" },
+            { "zhTitle": "哪些生活习惯可让糖尿病患者获益？", "enTitle": "Lifestyle Habits That Benefit Diabetes Patients", "source": "《知识分子》，2018-06-18", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知识分子" },
+            { "zhTitle": "哪种饮食方式最健康：地中海饮食夺冠，生酮饮食垫底", "enTitle": "Mediterranean Diet Ranked Healthiest, Keto Diet Last in Major Study", "source": "《知识分子》，2018-01-14", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知识分子" },
+            { "zhTitle": "近千种食物营养排名，猪油排第八？", "enTitle": "Nutritional Ranking of 1,000 Foods: Lard Ranks 8th", "source": "《知识分子》，2018-04-13", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知识分子" },
+            { "zhTitle": "少肥肉或少主食，哪个更减肥？答案可能出人意料", "enTitle": "Cutting Fat vs. Carbs: Which is Better for Weight Loss?", "source": "《知识分子》，2018-03-17", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知识分子" },
+            { "zhTitle": "中中华华刷屏外媒: 中国克隆猕猴今天登上Cell和各大头条", "enTitle": "Zhong Zhong and Hua Hua: China's Cloned Macaques Make Global Headlines", "source": "《知社学术圈》，2018-01-25", "zhTag": "生命科学", "enTag": "Life Science", "media": "知社学术圈" },
+            { "zhTitle": "备孕有多重要：受孕前父母的饮食和生活方式关乎子女健康", "enTitle": "Preconception Health: How Parental Diet Impacts Child Health", "source": "《知社学术圈》，2018-04-18", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知社学术圈" },
+            { "zhTitle": "贪杯影响预期寿命，合适的饮酒量是多少？", "enTitle": "Alcohol Consumption and Life Expectancy: What's the Safe Limit?", "source": "《知社学术圈》，2018-04-13", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知社学术圈" },
+            { "zhTitle": "中国学者揭示衰老的遗传基础和雄风长驻之秘密", "enTitle": "Chinese Researchers Uncover Genetic Basis of Aging and Longevity", "source": "《知社学术圈》，2017-11-09", "zhTag": "生命科学", "enTag": "Life Science", "media": "知社学术圈" },
+            { "zhTitle": "多吃蔬果无益，高脂膳食更健康？两篇《柳叶刀》论文遭多位权威学者批评", "enTitle": "Controversial Lancet Studies on Diet Criticized by Leading Scientists", "source": "《知识分子》，2017-09-05", "zhTag": "健康政策", "enTag": "Health Policy", "media": "知识分子" },
+            { "zhTitle": "不要打扰睡着的婴儿，他们正在\"学习\"", "enTitle": "Don't Disturb Sleeping Babies - They're Actively Learning", "source": "《知识分子》，2017-08-30", "zhTag": "生命科学", "enTag": "Life Science", "media": "知识分子" },
+            { "zhTitle": "RNA好累：可编码的\"非编码RNA\"", "enTitle": "The Surprising Role of 'Non-Coding' RNA in Gene Expression", "source": "《赛先生》，2016-11-01", "zhTag": "生命科学", "enTag": "Life Science", "media": "赛先生" },
+            { "zhTitle": "\"学问是老婆的好，老婆是自己的好\"——专访浙江大学王志萍、郭行夫妇 | 科研伉俪", "enTitle": "Research Partners: Interview with Zhejiang University's Wang Zhiping and Guo Hang", "source": "《赛先生》，2016-08-06", "zhTag": "生命科学", "enTag": "Life Science", "media": "赛先生", "isInterview": true },
+            { "zhTitle": "独家专访Cell Research常务副主编李党生：从事科学编辑是无比正确的决定", "enTitle": "Exclusive Interview: Li Dangsheng on a Career in Scientific Editing", "source": "《赛先生》，2016-08-05", "zhTag": "生命科学", "enTag": "Life Science", "media": "赛先生", "isInterview": true },
+            { "zhTitle": "到底哪一类脂肪对你有害？", "enTitle": "Which Fats Are Truly Harmful to Your Health?", "source": "《赛先生》，2016-07-22", "zhTag": "健康政策", "enTag": "Health Policy", "media": "赛先生" },
+            { "zhTitle": "大数据告诉你哪些基因参与Ⅱ型糖尿病的遗传", "enTitle": "Big Data Identifies Genes Linked to Type 2 Diabetes", "source": "《赛先生》，2016-07-21", "zhTag": "生命科学", "enTag": "Life Science", "media": "赛先生" },
+            { "zhTitle": "打造一部冲向癌细胞的战车：肿瘤免疫疗法之CAR-T细胞疗法", "enTitle": "CAR-T Therapy: Building a 'Chariot' to Attack Cancer Cells", "source": "《赛先生》，2016-03-11", "zhTag": "医疗技术", "enTag": "Medical Technology", "media": "赛先生" }
+        ];
+
+        const aboutData = {
+            "zh": {
+                "title": "作者介绍",
+                "intro": "李娟博士拥有生命科学专业博士学位，曾在中国、美国及加拿大从事生物医学基础研究，在国际期刊发表学术论文多篇。她同时深耕科学传播领域，擅长文献综述、证据综合及面向多元受众的科研写作，能将复杂医学研究转化为清晰易懂的内容。",
+                "full": `
+                    <h3><span class="about-icon">🎓</span>个人简介</h3>
+                    <p>李娟博士是一位兼具深厚科研背景与丰富科学传播经验的生命科学学者。</p>
+                    <p>她曾在中国、美国及加拿大顶尖科研院所从事生物医学基础研究，在国际同行评审期刊发表学术论文多篇。</p>
+                    <p>在科学传播领域，她联合创办了一家专注于健康科普的科技媒体机构，担任主编数年，带领团队为研究人员、临床医生及公众制作基于证据的科普文章、可视化内容与教育素材，并与学术期刊及科研机构建立合作关系。她还主持了中国科学技术协会及中国科学院资助的多项科学传播项目。最近几年，她以独立科学传播写作顾问身份持续活跃于该领域，服务于多元受众群体，包括学术界、医疗界及政策制定者。</p>
+                    <p>李博士的核心专长涵盖系统文献综述与证据综合、研究类写作与知识转化、跨学科团队协作，以及生物医学实验室研究等。</p>
+                `
+            },
+            "en": {
+                "title": "About the Author",
+                "intro": "Dr. Juan Li holds a PhD in Developmental Biology and Immunology and has conducted biomedical research in China, the United States, and Canada, with multiple publications in international peer-reviewed journals. She has also built a distinguished career in science communication, specializing in literature review, evidence synthesis, and research writing for academic, clinical, policy, and public audiences.",
+                "full": `
+                    <h3><span class="about-icon">🎓</span>About Dr. Li</h3>
+                    <p>Dr. Juan Li is a life scientist and science communicator with a strong foundation in biomedical research and extensive experience in evidence-based science writing. </p>
+                    <p>Dr. Li held research positions at top-tier university and institutes across China, US and Canada, where she conducted fundamental biomedical research and published multiple articles in international peer-reviewed journals.</p>
+                    <p>Dr. Li subsequently transitioned into science communication, co-founding a healthcare science media company where she served as Chief Editor for over six years. In this role, she led a team in producing evidence-based articles, visual content, and educational materials for researchers, clinicians, and the general public, while building collaborative partnerships with academic journals and research institutions. She also directed science communication projects funded by the China Association for Science and Technology and the Chinese Academy of Sciences. In recent years, she has continued to work as an independent science communication consultant, serving diverse audiences that include academic researchers, healthcare professionals, and policy stakeholders.</p>
+                    <p>Dr. Li's core expertise encompasses systematic literature review and evidence synthesis, research writing and knowledge translation, multidisciplinary collaboration, and biomedical laboratory research.</p>
+                `
+            }
+        };
+
+        let currentLang = 'zh';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            renderPage();
+        }
+
+        function renderPage() {
+            document.getElementById('page-title').innerText = currentLang === 'zh' ? '李娟博士' : 'Dr. Juan Li';
+            document.getElementById('title-sub').innerText = currentLang === 'zh' ? '科普作品集' : 'Science Portfolio';
+            document.getElementById('page-subtitle').innerText = currentLang === 'zh' ? '专注生物医学和健康政策前沿' : 'Focusing on Biomedical Frontiers & Health Policy';
+            document.getElementById('langBtn').innerHTML = currentLang === 'zh' ? '<span class="lang-icon">🌐</span><span>English</span>' : '<span class="lang-icon">🌐</span><span>中文版</span>';
+            document.getElementById('scroll-text').innerText = currentLang === 'zh' ? '向下探索' : 'Scroll to Explore';
+            document.getElementById('section-featured').innerHTML = currentLang === 'zh' ? '<span class="section-icon">✨</span>精选文章' : '<span class="section-icon">✨</span>Featured Articles';
+            document.getElementById('additional-works-title').innerHTML = currentLang === 'zh' ? '<span class="section-icon">📚</span>更多作品' : '<span class="section-icon">📚</span>More Works';
+            document.getElementById('footer-text').innerHTML = currentLang === 'zh' ? '&copy; 2026 Juan Li 博士 / All Rights Reserved' : '&copy; 2026 Dr. Juan Li / All Rights Reserved';
+            document.getElementById('back-text').innerText = currentLang === 'zh' ? '返回主页' : 'Back to Home';
+            document.getElementById('about-back-text').innerText = currentLang === 'zh' ? '返回主页' : 'Back to Home';
+            document.getElementById('about-subtitle').innerText = currentLang === 'zh' ? '科学传播者 & 研究者' : 'Science Communicator & Researcher';
+            document.getElementById('empty-text').innerText = currentLang === 'zh' ? '该分类下暂无文章' : 'No articles in this category';
+
+            renderAuthorSidebar();
+            renderCategoryTags();
+            renderFullArticlesList();
+            renderAdditionalWorks();
+            
+            const about = aboutData[currentLang];
+            document.getElementById('full-about-title').innerText = currentLang === 'zh' ? '作者简介（完整）' : 'About the Author (Full)';
+            document.getElementById('full-about-content').innerHTML = about.full;
+        }
+
+        function renderAuthorSidebar() {
+            const about = aboutData[currentLang];
+            const allMedia = [...new Set([
+                ...articlesData.map(a => a.media),
+                ...additionalWorksData.map(w => w.media)
+            ])].filter(Boolean).sort();
+            
+            document.getElementById('about-content').innerHTML = `
+                <div class="author-avatar">👩‍🔬</div>
+                <h2>${about.title}</h2>
+                <p>${about.intro}</p>
+                <a href="javascript:void(0)" class="more-about-btn" onclick="showAboutFull()">
+                    <span>🔍</span>
+                    <span>${currentLang === 'zh' ? '详细介绍' : 'Detailed Introduction'}</span>
+                </a>
+                
+                <div class="sidebar-tags">
+                    <h3><span class="tag-icon">📰</span>${currentLang === 'zh' ? '合作媒体' : 'Media Partners'}</h3>
+                    ${allMedia.map(media => `<span class="sidebar-tag" onclick="showMedia('${media}')"><span class="tag-icon">🏛️</span>${media}</span>`).join('')}
+                </div>
+            `;
+        }
+
+        function renderCategoryTags() {
+            const tagsContainer = document.getElementById('tags-container');
+            tagsContainer.innerHTML = '';
+            
+            const mainTags = articlesData.map(a => currentLang === 'zh' ? a.zhTag : a.enTag);
+            const additionalTags = additionalWorksData.map(w => currentLang === 'zh' ? w.zhTag : w.enTag);
+            let allTags = [...new Set([...mainTags, ...additionalTags])];
+            
+            const interviewTag = currentLang === 'zh' ? '人物采访' : 'Interviews';
+            if (!allTags.includes(interviewTag)) {
+                allTags.push(interviewTag);
+            }
+            
+            allTags.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = 'category-tag';
+                const icon = categoryIcons[tag] || '📑';
+                btn.innerHTML = `<span class="cat-icon">${icon}</span>${tag}`;
+                btn.onclick = () => showCategory(tag);
+                tagsContainer.appendChild(btn);
+            });
+        }
+
+        function renderFullArticlesList() {
+            const container = document.getElementById('full-articles-container');
+            container.innerHTML = '';
+            
+            const sortedArticles = [...articlesData].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            sortedArticles.forEach((article, index) => {
+                const card = document.createElement('div');
+                card.className = 'article-card reveal';
+                card.style.animationDelay = `${index * 0.05}s`;
+                
+                const isInterview = article.isInterview || false;
+                const interviewTag = currentLang === 'zh' ? '人物采访' : 'Interviews';
+                const mainTag = currentLang === 'zh' ? article.zhTag : article.enTag;
+                const mainIcon = categoryIcons[mainTag] || '📑';
+                
+                card.innerHTML = `
+                    <div class="article-card-header">
+                        <span class="article-tag" onclick="showCategory('${mainTag}')"><span>${mainIcon}</span>${mainTag}</span>
+                        ${isInterview ? `<span class="article-tag" onclick="showCategory('${interviewTag}')">🎙️${interviewTag}</span>` : ''}
+                    </div>
+                    <h4><span class="article-icon">${mainIcon}</span>${currentLang === 'zh' ? article.zhTitle : article.enTitle}</h4>
+                    <div class="abstract">${currentLang === 'zh' ? article.zhAbstract : article.enAbstract}</div>
+                    <div class="article-card-footer">
+                        <a href="${article.link}" target="_blank" class="read-more">${currentLang === 'zh' ? '阅读全文' : 'Read Full Article'}</a>
+                        <div class="meta-info">
+                            <span class="meta-icon">📅</span>
+                            <span>${article.date}</span>
+                            <span style="margin: 0 4px;">·</span>
+                            <span class="meta-icon">📰</span>
+                            <span>${article.media}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    el.classList.add('active');
+                });
+            }, 100);
+        }
+
+        function renderAdditionalWorks() {
+            const listContainer = document.getElementById('additional-works-list');
+            listContainer.innerHTML = '';
+            
+            additionalWorksData.forEach(work => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span class="work-title">${currentLang === 'zh' ? work.zhTitle : work.enTitle}</span>
+                    <span class="work-source">${work.source}</span>
+                `;
+                listContainer.appendChild(li);
+            });
+        }
+
+        function showCategory(tag) {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('about-full-page').style.display = 'none';
+            document.getElementById('category-page').style.display = 'block';
+            
+            document.getElementById('category-title').innerText = (currentLang === 'zh' ? '文章分类：' : 'Category: ') + tag;
+            const list = document.getElementById('category-list');
+            list.innerHTML = '';
+            
+            const interviewTagZh = '人物采访';
+            const interviewTagEn = 'Interviews';
+            
+            let filteredMain, filteredAdditional;
+            
+            if (tag === interviewTagZh || tag === interviewTagEn) {
+                filteredMain = articlesData.filter(a => a.isInterview);
+                filteredAdditional = additionalWorksData.filter(w => w.isInterview);
+            } else {
+                filteredMain = articlesData.filter(a => (currentLang === 'zh' ? a.zhTag : a.enTag) === tag);
+                filteredAdditional = additionalWorksData.filter(w => (currentLang === 'zh' ? w.zhTag : w.enTag) === tag);
+            }
+            
+            const mainItems = filteredMain.map(article => ({
+                title: currentLang === 'zh' ? article.zhTitle : article.enTitle,
+                link: article.link,
+                date: article.date || ''
+            }));
+            
+            const additionalItems = filteredAdditional.map(work => {
+                const dateMatch = work.source.match(/(\d{4}-\d{2}-\d{2})/);
+                const date = dateMatch ? dateMatch[1] : '';
+                return {
+                    title: currentLang === 'zh' ? work.zhTitle : work.enTitle,
+                    link: '#',
+                    date: date
+                };
+            });
+            
+            const allItems = [...mainItems, ...additionalItems];
+            allItems.sort((a, b) => (b.date && a.date) ? new Date(b.date) - new Date(a.date) : 0);
+            
+            if (allItems.length === 0) {
+                document.getElementById('empty-state').style.display = 'block';
+            } else {
+                document.getElementById('empty-state').style.display = 'none';
+                allItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <a href="${item.link}" ${item.link !== '#' ? 'target="_blank"' : ''}>${item.title}</a>
+                        ${item.date ? `<span class="article-meta"><span class="meta-icon">📅</span>${item.date}</span>` : ''}
+                    `;
+                    list.appendChild(li);
+                });
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function showMedia(mediaName) {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('about-full-page').style.display = 'none';
+            document.getElementById('category-page').style.display = 'block';
+            
+            document.getElementById('category-title').innerText = (currentLang === 'zh' ? '媒体平台：' : 'Media: ') + mediaName;
+            const list = document.getElementById('category-list');
+            list.innerHTML = '';
+            
+            const filteredMain = articlesData.filter(a => a.media === mediaName);
+            const filteredAdditional = additionalWorksData.filter(w => w.media === mediaName);
+            
+            const mainItems = filteredMain.map(article => ({
+                title: currentLang === 'zh' ? article.zhTitle : article.enTitle,
+                link: article.link,
+                date: article.date || ''
+            }));
+            
+            const additionalItems = filteredAdditional.map(work => {
+                const dateMatch = work.source.match(/(\d{4}-\d{2}-\d{2})/);
+                const date = dateMatch ? dateMatch[1] : '';
+                return {
+                    title: currentLang === 'zh' ? work.zhTitle : work.enTitle,
+                    link: '#',
+                    date: date
+                };
+            });
+            
+            const allItems = [...mainItems, ...additionalItems];
+            allItems.sort((a, b) => (b.date && a.date) ? new Date(b.date) - new Date(a.date) : 0);
+            
+            if (allItems.length === 0) {
+                document.getElementById('empty-state').style.display = 'block';
+            } else {
+                document.getElementById('empty-state').style.display = 'none';
+                allItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <a href="${item.link}" ${item.link !== '#' ? 'target="_blank"' : ''}>${item.title}</a>
+                        ${item.date ? `<span class="article-meta"><span class="meta-icon">📅</span>${item.date}</span>` : ''}
+                    `;
+                    list.appendChild(li);
+                });
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        function showAboutFull() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('category-page').style.display = 'none';
+            document.getElementById('about-full-page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function showMainPage() {
+            document.getElementById('category-page').style.display = 'none';
+            document.getElementById('about-full-page').style.display = 'none';
+            document.getElementById('main-page').style.display = 'grid';
+            window.scrollTo(0, 0);
+            
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    el.classList.add('active');
+                });
+            }, 100);
+        }
+
+        renderPage();
+    </script>
+</body>
+</html>
