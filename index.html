@@ -112,13 +112,6 @@
             justify-content: center;
             font-size: 3rem;
             animation: rotate 10s linear infinite reverse;
-            overflow: hidden;
-        }
-
-        .avatar-inner svg {
-            width: 100%;
-            height: 100%;
-            display: block;
         }
 
         header h1 {
@@ -225,6 +218,33 @@
             color: #64748b;
         }
 
+        @media (max-width: 768px) {
+            header {
+                min-height: 500px;
+                max-height: 700px;
+            }
+            header h1 {
+                font-size: 2.8rem;
+            }
+            .title-sub {
+                font-size: 1.4rem;
+            }
+            .avatar-ring {
+                width: 90px;
+                height: 90px;
+            }
+            .avatar-inner {
+                font-size: 2.2rem;
+            }
+            .header-tags {
+                gap: 8px;
+            }
+            .header-tag {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
         /* ===== LANGUAGE TOGGLE ===== */
         .lang-toggle {
             position: fixed;
@@ -310,14 +330,6 @@
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
             opacity: 0.6;
-        }
-
-        .author-avatar svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-            position: relative;
-            z-index: 2;
         }
 
         .author-sidebar h2 {
@@ -840,13 +852,6 @@
             font-weight: 700;
             box-shadow: 0 4px 16px rgba(12, 74, 110, 0.2);
             flex-shrink: 0;
-            overflow: hidden;
-        }
-
-        .about-avatar-large svg {
-            width: 100%;
-            height: 100%;
-            display: block;
         }
 
         #full-about-content h3 {
@@ -923,16 +928,6 @@
             font-size: 4rem;
             margin-bottom: 16px;
             opacity: 0.5;
-        }
-
-        /* ===== NOSCRIPT ===== */
-        noscript {
-            display: block;
-            padding: 40px;
-            text-align: center;
-            background: #fee2e2;
-            color: #991b1b;
-            border-bottom: 2px solid #ef4444;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -1013,43 +1008,12 @@
 </head>
 <body>
 
-    <noscript>
-        <h2>请启用 JavaScript 以浏览本页面 / Please enable JavaScript to view this portfolio</h2>
-        <p>本页面需要 JavaScript 来加载内容和交互功能。</p>
-    </noscript>
-
     <header>
         <canvas id="headerCanvas" class="header-canvas"></canvas>
         <div class="header-overlay"></div>
         <div class="header-content-center">
             <div class="avatar-ring">
-                <div class="avatar-inner" id="header-avatar">
-                    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-                        <defs>
-                            <linearGradient id="avFace" x1="60" y1="30" x2="60" y2="90" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#f5d0b5"/>
-                                <stop offset="100%" stop-color="#e8b89a"/>
-                            </linearGradient>
-                            <linearGradient id="avHair" x1="60" y1="10" x2="60" y2="110" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#2a2a2a"/>
-                                <stop offset="100%" stop-color="#0a0a0a"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="60" cy="60" r="58" fill="#fafaf9"/>
-                        <path d="M20 55 C20 20 100 20 100 55 C105 85 100 110 60 115 C20 110 15 85 20 55" fill="url(#avHair)"/>
-                        <rect x="50" y="75" width="20" height="18" rx="4" fill="url(#avFace)"/>
-                        <ellipse cx="60" cy="55" rx="26" ry="30" fill="url(#avFace)"/>
-                        <path d="M34 50 C34 28 86 28 86 50 C86 40 75 34 60 34 C45 34 34 40 34 50" fill="url(#avHair)"/>
-                        <ellipse cx="50" cy="54" rx="3" ry="4" fill="#1a1a1a"/>
-                        <ellipse cx="70" cy="54" rx="3" ry="4" fill="#1a1a1a"/>
-                        <path d="M46 48 Q50 46 54 48" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
-                        <path d="M66 48 Q70 46 74 48" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
-                        <path d="M60 56 L57 66 L63 66" stroke="#d4a574" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                        <path d="M52 74 Q60 78 68 74" stroke="#c27b7b" stroke-width="2" stroke-linecap="round" fill="none"/>
-                        <ellipse cx="34" cy="58" rx="3" ry="5" fill="url(#avFace)"/>
-                        <ellipse cx="86" cy="58" rx="3" ry="5" fill="url(#avFace)"/>
-                    </svg>
-                </div>
+                <div class="avatar-inner">👩‍🔬</div>
             </div>
             <h1 id="page-title">
                 <span class="title-gradient">李娟博士</span>
@@ -1109,33 +1073,7 @@
     <div class="about-full-page" id="about-full-page">
         <a href="javascript:void(0)" class="back-btn" onclick="showMainPage()">← <span id="about-back-text">返回主页</span></a>
         <div class="about-header-visual">
-            <div class="about-avatar-large" id="about-avatar-large">
-                <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-                    <defs>
-                        <linearGradient id="avFace2" x1="60" y1="30" x2="60" y2="90" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#f5d0b5"/>
-                            <stop offset="100%" stop-color="#e8b89a"/>
-                        </linearGradient>
-                        <linearGradient id="avHair2" x1="60" y1="10" x2="60" y2="110" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#2a2a2a"/>
-                            <stop offset="100%" stop-color="#0a0a0a"/>
-                        </linearGradient>
-                    </defs>
-                    <circle cx="60" cy="60" r="58" fill="#fafaf9"/>
-                    <path d="M20 55 C20 20 100 20 100 55 C105 85 100 110 60 115 C20 110 15 85 20 55" fill="url(#avHair2)"/>
-                    <rect x="50" y="75" width="20" height="18" rx="4" fill="url(#avFace2)"/>
-                    <ellipse cx="60" cy="55" rx="26" ry="30" fill="url(#avFace2)"/>
-                    <path d="M34 50 C34 28 86 28 86 50 C86 40 75 34 60 34 C45 34 34 40 34 50" fill="url(#avHair2)"/>
-                    <ellipse cx="50" cy="54" rx="3" ry="4" fill="#1a1a1a"/>
-                    <ellipse cx="70" cy="54" rx="3" ry="4" fill="#1a1a1a"/>
-                    <path d="M46 48 Q50 46 54 48" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
-                    <path d="M66 48 Q70 46 74 48" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
-                    <path d="M60 56 L57 66 L63 66" stroke="#d4a574" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                    <path d="M52 74 Q60 78 68 74" stroke="#c27b7b" stroke-width="2" stroke-linecap="round" fill="none"/>
-                    <ellipse cx="34" cy="58" rx="3" ry="5" fill="url(#avFace2)"/>
-                    <ellipse cx="86" cy="58" rx="3" ry="5" fill="url(#avFace2)"/>
-                </svg>
-            </div>
+            <div class="about-avatar-large">👩‍🔬</div>
             <div>
                 <h2 id="full-about-title">作者简介</h2>
                 <p style="color: var(--text-muted); margin: 0;" id="about-subtitle">科学传播者 & 研究者</p>
@@ -1157,33 +1095,6 @@
     </footer>
 
     <script>
-        // ===== AVATAR SVG =====
-        const avatarSVG = `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-            <defs>
-                <linearGradient id="avFaceSide" x1="60" y1="30" x2="60" y2="90" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#f5d0b5"/>
-                    <stop offset="100%" stop-color="#e8b89a"/>
-                </linearGradient>
-                <linearGradient id="avHairSide" x1="60" y1="10" x2="60" y2="110" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#2a2a2a"/>
-                    <stop offset="100%" stop-color="#0a0a0a"/>
-                </linearGradient>
-            </defs>
-            <circle cx="60" cy="60" r="58" fill="#fafaf9"/>
-            <path d="M20 55 C20 20 100 20 100 55 C105 85 100 110 60 115 C20 110 15 85 20 55" fill="url(#avHairSide)"/>
-            <rect x="50" y="75" width="20" height="18" rx="4" fill="url(#avFaceSide)"/>
-            <ellipse cx="60" cy="55" rx="26" ry="30" fill="url(#avFaceSide)"/>
-            <path d="M34 50 C34 28 86 28 86 50 C86 40 75 34 60 34 C45 34 34 40 34 50" fill="url(#avHairSide)"/>
-            <ellipse cx="50" cy="54" rx="3" ry="4" fill="#1a1a1a"/>
-            <ellipse cx="70" cy="54" rx="3" ry="4" fill="#1a1a1a"/>
-            <path d="M46 48 Q50 46 54 48" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <path d="M66 48 Q70 46 74 48" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <path d="M60 56 L57 66 L63 66" stroke="#d4a574" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <path d="M52 74 Q60 78 68 74" stroke="#c27b7b" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <ellipse cx="34" cy="58" rx="3" ry="5" fill="url(#avFaceSide)"/>
-            <ellipse cx="86" cy="58" rx="3" ry="5" fill="url(#avFaceSide)"/>
-        </svg>`;
-
         // ===== PARTICLE ANIMATION =====
         (function() {
             const canvas = document.getElementById('headerCanvas');
@@ -1753,7 +1664,11 @@
         }
 
         function renderPage() {
-            document.getElementById('page-title').innerHTML = currentLang === 'zh' ? '<span class="title-gradient">李娟博士</span>' : '<span class="title-gradient">Dr. Juan Li</span>';
+            // 修复：只更新 .title-gradient 的文本，不要覆盖整个 h1 的 DOM
+            const titleGradient = document.querySelector('#page-title .title-gradient');
+            if (titleGradient) {
+                titleGradient.innerText = currentLang === 'zh' ? '李娟博士' : 'Dr. Juan Li';
+            }
             document.getElementById('title-sub').innerText = currentLang === 'zh' ? '科普作品集' : 'Science Portfolio';
             document.getElementById('page-subtitle').innerText = currentLang === 'zh' ? '专注生物医学和健康政策前沿' : 'Focusing on Biomedical Frontiers & Health Policy';
             document.getElementById('langBtn').innerHTML = currentLang === 'zh' ? '<span class="lang-icon">🌐</span><span>English</span>' : '<span class="lang-icon">🌐</span><span>中文版</span>';
@@ -1784,7 +1699,7 @@
             ])].filter(Boolean).sort();
             
             document.getElementById('about-content').innerHTML = `
-                <div class="author-avatar">${avatarSVG}</div>
+                <div class="author-avatar">👩‍🔬</div>
                 <h2>${about.title}</h2>
                 <p>${about.intro}</p>
                 <a href="javascript:void(0)" class="more-about-btn" onclick="showAboutFull()">
